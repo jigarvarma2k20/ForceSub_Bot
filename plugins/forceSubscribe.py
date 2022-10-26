@@ -79,7 +79,7 @@ async def _check_member(client, message):
 @Client.on_message(filters.command(["forcesubscribe", "fsub"]) & ~filters.private)
 async def config(client, message):
   user = await client.get_chat_member(message.chat.id, message.from_user.id)
-  if user.status == "creator" or user.user.id in Config.SUDO_USERS:
+  if user.status == "creator" or user.status == "admin" or user.user.id in Config.SUDO_USERS:
     chat_id = message.chat.id
     if len(message.command) > 1:
       input_str = message.command[1]
